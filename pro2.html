@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header class="main-header">PURPLE PALACE</header>
+	
+	
+	<hr>
+	
+	<section align="center">
+		
+		<div >
+			<span><button class="p1" onmousedown="fun(1,1)"><img class='pi1' name='ph1' src="p1.gif"></button></span>
+			<span><button class="p2" onmousedown="fun(2,2)"><img class='pi2' name='ph2' src="p1.gif"></button></span>
+			<span><button class="p3" onmousedown="fun(5,3)"><img class='pi3' name='ph3' src="p1.gif"></button></span>
+			<span><button class="p4" onmousedown="fun(3,4)"><img class='pi4' name='ph4' src="p1.gif"></button></span>
+		</div>
+		<div>
+			<span><button class="p5" onmousedown="fun(6,5)"><img class='pi5' name='ph5' src="p1.gif"></button></span>
+			<span><button class="p6" onmousedown="fun(4,6)"><img class='pi6' name='ph6' src="p1.gif"></button></span>
+			<span><button class="p7" onmousedown="fun(9,7)"><img class='pi7' name='ph7' src="p1.gif"></button></span>
+			<span><button class="p8" onmousedown="fun(14,8)"><img class='pi8' name='ph8' src="p1.gif"></button></span>
+		</div>
+		<div>
+			<span><button class="p9" onmousedown="fun(10,9)"><img class='pi9' name='ph9' src="p1.gif"></button></span>
+			<span><button class="p10"onmousedown="fun(8,10)"><img class='pi10'name='ph10' src="p1.gif"></button></span>
+			<span><button class="p11"onmousedown="fun(7,11)"><img class='pi11'name='ph11' src="p1.gif"></button></span>
+			<span><button class="p12"onmousedown="fun(12,12)"><img class='pi12'name='ph12' src="p1.gif"></button></span>
+		</div>
+		<div>
+			<span><button class="p13"onmousedown="fun(13,13)"><img class='pi13'name='ph13' src="p1.gif"></button></span>
+			<span><button class="p14"onmousedown="fun(15,14)"><img class='pi14'name='ph14' src="p1.gif"></button></span>
+			<span><button class="p15"onmousedown="fun(11,15)"><img class='pi15'name='ph15' src="p1.gif"></button></span>
+			<span><button class="p16"onmousedown="fun(16,16)"><img class='pi16'name='ph16' src="p1.gif"></button></span>
+		</div>
+		
+		</section>
+
+	<footer>
+		<table class="chance">
+			<tr>
+				<th>CHANCE<br> REMAINING :</th>
+				<th id="data">16</th>
+			</tr>
+			
+		</table>
+	</footer>
+
+	<script type="text/javascript">
+		var number=2;
+		var check=[1,1];
+		var pos=[1,1]
+		var dup_check=[];
+		var dup_pos=[];
+		var x1;
+		var chance=15;
+		var win=0;
+
+		function end(n)
+		{
+			if(n==1)
+			{
+				window.alert("YOU WON!!!")
+				window.open("pro2.html","_top");
+
+			}
+			else
+			{
+				window.alert("SORRY!! YOU LOST")
+				window.open("pro2.html","_top");
+			}
+		}	
+
+		function cal()
+		{
+			document.getElementById('data').innerHTML=chance;
+			chance--;
+			if(check[0]==check[1])
+			{
+				win++;
+				document.images['ph'+pos[0]].src='p2.gif';
+				document.images['ph'+pos[1]].src='p2.gif';
+				var x=document.getElementsByClassName('p'+pos[0]);
+ 				x[0].disabled=true;
+				var y=document.getElementsByClassName('p'+pos[1]);
+				y[0].disabled=true;
+			}
+				
+			
+			else
+			{
+				document.images['ph'+pos[0]].src='p1.gif';
+				document.images['ph'+pos[1]].src='p1.gif';	
+			}
+
+			if(win==8)
+				{
+					end(1);
+				}
+				else if(chance<0)
+				{
+					end(2);
+				}
+
+
+		}
+
+		function fun(n,k) {
+			
+			number=(number==1)?2:1;			
+			if(n>8){
+				n=n-8;
+			}
+			
+			//if(!(n in dup_check))
+			{
+			check[number-1]=n;
+			pos[number-1]=k
+
+			document.images['ph'+k].src='pic'+n+'.gif';
+			
+			if(number==1){
+			 x1=document.getElementsByClassName('p'+k);
+			 x1[0].disabled=true;
+			}
+			else
+			{	x1[0].disabled=false;
+				setTimeout(cal, 400);
+			}
+			}
+		}
+
+
+
+	</script>
+</body>
+</html>
